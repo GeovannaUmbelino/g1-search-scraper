@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "g1-search-scraper"
+version = "1.0.0"
+description = "Coletor resiliente para a busca do G1"
+requires-python = ">=3.10"
+dependencies = [
+  "beautifulsoup4>=4.12,<5",
+  "requests>=2.31,<3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "pytest-cov>=5,<7", "ruff>=0.6,<1"]
+
+[project.scripts]
+g1-scraper = "g1_scraper.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --cov=g1_scraper --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
